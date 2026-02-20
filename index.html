@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sound Terrain 3D</title>
+    <script type="module" crossorigin src="./assets/index-BnsByku8.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-Dk2WFIC2.css">
+  </head>
+  <body>
+    <div id="app">
+      <canvas id="scene-canvas" aria-label="3D audio visualizer"></canvas>
+
+      <div id="landing" class="panel landing">
+        <p class="eyebrow">AUDIO LAB</p>
+        <h1>Sound Terrain 3D</h1>
+        <p class="tagline">Real-time microphone input mapped into a dynamic 3D spectral landscape.</p>
+        <div class="cta-row">
+          <button id="start-btn" class="btn btn-primary">Start Microphone</button>
+          <button id="demo-btn" class="btn btn-secondary">Demo Mode</button>
+        </div>
+        <p class="hint">On iOS/Safari, microphone access must be triggered by tapping a button.</p>
+      </div>
+
+      <div id="overlay" class="panel controls hidden">
+        <div class="control-header">
+          <p class="eyebrow">SPECTRAL MONITOR</p>
+          <p class="system-label">Realtime FFT Terrain Engine</p>
+        </div>
+
+        <div class="row top-row">
+          <div class="status-wrap">
+            <span id="mic-status" class="badge off">Mic: OFF</span>
+            <span id="fps-status" class="badge neutral">FPS: --</span>
+          </div>
+          <button id="stop-btn" class="btn btn-secondary">Stop</button>
+        </div>
+
+        <div class="grid">
+          <label>Mode
+            <select id="mode-select">
+              <option value="terrain">Spectrum Terrain</option>
+              <option value="ribbon">Wave Ribbon</option>
+            </select>
+          </label>
+
+          <label>FFT Size
+            <select id="fft-size">
+              <option value="1024">1024</option>
+              <option value="2048" selected>2048</option>
+              <option value="4096">4096</option>
+            </select>
+          </label>
+
+          <label>Detail
+            <select id="detail-level">
+              <option value="low">Low</option>
+              <option value="medium" selected>Medium</option>
+              <option value="high">High</option>
+            </select>
+          </label>
+
+          <label>Sensitivity <span id="gain-value">1.5</span>
+            <input id="gain" type="range" min="0.4" max="3" step="0.05" value="1.5" />
+          </label>
+
+          <label>Smoothing <span id="smoothing-value">0.72</span>
+            <input id="smoothing" type="range" min="0" max="0.95" step="0.01" value="0.72" />
+          </label>
+
+          <label>History <span id="history-value">120</span>
+            <input id="history" type="range" min="40" max="220" step="10" value="120" />
+          </label>
+        </div>
+
+        <div class="row toggles">
+          <label><input id="freeze" type="checkbox" /> Freeze</label>
+          <label><input id="wireframe" type="checkbox" /> Wireframe</label>
+          <label><input id="bg-toggle" type="checkbox" checked /> Gradient BG</label>
+        </div>
+
+        <div class="row actions">
+          <button id="reset-camera" class="btn btn-secondary">Reset Camera</button>
+        </div>
+
+        <p class="axes-tip">Axes: X = frequency (low to high), Y = amplitude, Z = time history (new near camera).</p>
+      </div>
+
+      <div id="error-toast" class="panel error hidden"></div>
+    </div>
+
+  </body>
+</html>
